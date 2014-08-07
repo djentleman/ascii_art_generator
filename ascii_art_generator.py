@@ -59,7 +59,7 @@ def main():
             art += getChar(pixels[j, i][0])
         art += "\n"
     # write ascii art to file
-    writeToFile("test.txt", "<p>" + art + "</p>")
+    writeToFile("test.txt", art)
     # open file in browser?
     # (opens in notepad but hey)
     webbrowser.open("test.txt", new=0)
