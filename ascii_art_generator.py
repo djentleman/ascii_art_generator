@@ -4,6 +4,29 @@ import webbrowser
 import Tkinter
 import tkFileDialog
 
+def getHTMLhead():
+    return """
+<html>
+    <head>
+        <style>
+            p
+            {
+                font-family: monospace;
+                white-space: pre-wrap;
+                font-size: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <p>"""
+
+def getHTMLtail():
+    return """
+        </p>
+    </body>
+</html>
+           """
+
 def getImage():
     root = Tkinter.Tk()
     root.withdraw()
@@ -20,25 +43,25 @@ def writeToFile(path, data):
 def getChar(pixel):
     pixel = 255 - pixel
     if pixel < 25:
-        return " "
+        return "  "
     elif pixel < 50:
-        return "-"
+        return "--"
     elif pixel < 75:
-        return "="
+        return "=="
     elif pixel < 100:
-        return "I"
+        return "ii"
     elif pixel < 125:
-        return "i"
+        return "77"
     elif pixel < 150:
-        return "7"
+        return "II"
     elif pixel < 175:
-        return "P"
+        return "PP"
     elif pixel < 200:
-        return "N"
+        return "NN"
     elif pixel < 225:
-        return "W"
+        return "WW"
     else:
-        return "M"
+        return "MM"
 
 
 def main():
@@ -59,10 +82,9 @@ def main():
             art += getChar(pixels[j, i][0])
         art += "\n"
     # write ascii art to file
-    writeToFile("test.txt", art)
-    # open file in browser?
-    # (opens in notepad but hey)
-    webbrowser.open("test.txt", new=0)
+    writeToFile("test.html", getHTMLhead() + art + getHTMLtail())
+    # open file in browser
+    webbrowser.open("test.html", new=0)
 
 
 if __name__ == "__main__":
