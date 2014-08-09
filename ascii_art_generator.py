@@ -13,7 +13,7 @@ def getHTMLhead():
             {
                 font-family: monospace;
                 white-space: pre-wrap;
-                font-size: 5px;
+                font-size: 3px;
             }
         </style>
     </head>
@@ -42,23 +42,35 @@ def writeToFile(path, data):
 
 def getChar(pixel):
     pixel = 255 - pixel
-    if pixel < 25:
+    if pixel < 15:
         return "  "
-    elif pixel < 50:
-        return "--"
+    elif pixel < 30:
+        return "``"
+    elif pixel < 45:
+        return "''"
+    elif pixel < 60:
+        return '""'
     elif pixel < 75:
+        return "--"
+    elif pixel < 90:
         return "=="
-    elif pixel < 100:
+    elif pixel < 105:
         return "ii"
-    elif pixel < 125:
+    elif pixel < 120:
+        return "||"
+    elif pixel < 135:
         return "77"
     elif pixel < 150:
         return "II"
-    elif pixel < 175:
+    elif pixel < 165:
+        return "pp"
+    elif pixel < 190:
         return "PP"
-    elif pixel < 200:
+    elif pixel < 205:
+        return "@@"
+    elif pixel < 220:
         return "NN"
-    elif pixel < 225:
+    elif pixel < 230:
         return "WW"
     else:
         return "MM"
@@ -72,7 +84,7 @@ def main():
     img = greyscale(img)
     #img.show()
     # resize img
-    img = img.resize((128,128), PIL.Image.ANTIALIAS)
+    img = img.resize((256,256), PIL.Image.ANTIALIAS)
     pixels = img.load()
     dimensions = img.size
     art = ""
